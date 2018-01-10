@@ -1,0 +1,244 @@
+@charset "UTF-8";
+/****************************************
+
+    北河沿的微信公众号模板 CSS
+    2018.1.5 随意复制使用
+    
+    
+    CSS 基础知识
+    ^^^^^^^^^^^^
+    
+    选择器
+    	元素（类型）选择器：  h { color: red }			某个 HTML 元素，比如 p、h1、em、a，甚至可以是 html 本身
+    	
+    	id 选择器：			#horse {color:red}			可以为标有特定 id 的 HTML 元素指定特定的样式。
+    	
+    	属性选择器：			[type=button]{color:red]	可以为拥有指定属性的 HTML 元素设置样式，而不仅限于 class 和 id 属性。
+    						
+		选择器分组：			h,p,div{color:red}			逗号 (,)分隔
+
+		后代选择器：			h div {color: red} 			规则左边的选择器一端包括两个或多个用空格分隔的选择器。选择器之间的空格是一种结合符（combinator）。每个空格结合符可以解释为“... 在 ... 找到”、“... 作为 ... 的一部分”、“... 作为 ... 的后代”，但是要求必须从右向左读选择器。
+
+		子元素选择器：		h1 > strong {color:red;}	（Child selector）
+		
+		相邻兄弟选择器：		h1 + p {margin-top:50px;}	（Adjacent sibling selector）可选择紧接在另一元素后的元素，且二者有相同父元素。
+  
+-----------------------------------------
+CSS 字体属性
+属性					描述
+font				简写属性。作用是把所有针对字体的属性设置在一个声明中。
+font-family			设置字体系列。
+font-size			设置字体的尺寸。
+font-size-adjust	当首选字体不可用时，对替换字体进行智能缩放。（CSS2.1 已删除该属性。）
+font-stretch		对字体进行水平拉伸。（CSS2.1 已删除该属性。）
+font-style			设置字体风格。
+font-variant		以小型大写字体或者正常字体显示文本。
+font-weight			设置字体的粗细。
+
+-----------------------------------------
+CSS 文本属性
+属性					描述
+color				设置文本颜色
+direction			设置文本方向。
+line-height			设置行高。
+letter-spacing		设置字符间距。
+text-align			对齐元素中的文本。
+text-decoration		向文本添加修饰。
+text-indent			缩进元素中文本的首行。
+text-shadow			设置文本阴影。CSS2 包含该属性，但是 CSS2.1 没有保留该属性。
+text-transform		控制元素中的字母。
+unicode-bidi		设置文本方向。
+white-space			设置元素中空白的处理方式。
+word-spacing		设置字间距。
+
+****************************************/
+
+/*======================================
+【标题-1】
+
+Markdown # 
+HTML tag <h1>
+
+开篇导语 （卷首语）
+
+居中，17px, 粗体，字间距1px，行高 1.7 em
+有粗细双线边框，红色，或浮突阴影
+字体颜色：墨蓝色？
+
+.markdown-here-wrapper[data-md-url*="weixin."] 
+=======================================*/
+h1 {
+	letter-spacing: 0.07em !important; /* 字间距 0.1 */
+	color: rgb(2, 37, 86);
+	text-align: justified;
+	font-family: SimHei;
+	font-size: 16px;
+	word-wrap: break-word !important;
+	line-height: 2em;
+	max-width: 100%;
+	background-color: rgb(255, 255, 255);
+	box-shadow: rgb(225, 225, 225) 5px 5px 2px;
+	box-sizing: border-box !important;
+	border: 3px solid rgb(165, 6, 19);
+	border-radius: 0.1em;
+	padding: 10px 16px;
+	margin: 12px;
+}
+
+/*======================================
+【标题-2】
+居中，17px, 粗体，字间距1px，行高 1.7 em
+字体颜色：红底白字，两头圆角
+Markdown ## 
+HTML tag <h2>
+=======================================*/
+h2 {
+	font-family: SimHei;
+	font-size: 18px;
+	display: inline-block;
+	border-radius: 0.2em;
+	padding: 0.3em 0.6em;
+	color: rgb(255, 255, 255);
+	box-sizing: border-box;
+	background-color: rgb(193, 35, 50);
+	display: inline-block;
+}
+
+/*======================================
+【标题-3】
+居中，18px, 粗体，字间距1px，行高 1.7 em
+字体颜色：黄色
+=======================================*/
+h3 {
+	font-family: SimHei;
+	font-size: 18px;
+	color: rgb(25, 25, 25);
+	text-align: center;
+}
+
+/*======================================
+【标题-4】
+正文，16px, 体，字间距1px，行高 1.7 em
+字体颜色：蓝色
+=======================================*/
+h4 {
+	color: rgb(255, 255, 255);
+	border-width: 2px;
+	border-style: solid;
+	border-color: RGB(27, 177, 149); /*rgb(188, 63, 64);*/
+	padding: 6px 10px;
+	display: inline-block;
+	background: RGB(27, 177, 149); /* rgb(188, 63, 64); */
+	border-radius: 0.2em;
+	font-size: 17px;
+}
+/*======================================
+【标题-5】
+小白边框的图片 #### ![](photo.png)
+
+=======================================*/
+h5 {
+	font-size: 1.1em;
+	margin-top: 30px;
+	display: inline-block;
+	padding: 6px 18px;
+	background-color: rgb(115, 177, 146);
+	color: white;
+	border-top-left-radius: 50px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 50px;
+	border-bottom-left-radius: 10px;
+
+
+}
+
+/*======================================
+【标题-6】
+居中，18px, 粗体，字间距1px，行高 1.7 em
+字体颜色：蓝色
+=======================================*/
+h6 {
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(226, 226, 226);
+	box-shadow: 1px 2px 2px 0px rgb(226, 226, 226);
+	box-sizing: border-box;
+	
+	display: inline-block;
+	
+	font-size: 15px;
+	font-weight: normal;
+	
+	line-height: 1.8em;
+	letter-spacing: 1px;
+	
+	max-width: 100%;
+	padding: 10px 16px;
+	text-align: justify;
+	word-wrap: break-word !important;
+}
+
+/*======================================
+【正文】
+页面边距：6px；字体：18px；普通；字间距0.7 em；
+行高 1.7 em；字体颜色：缺省；
+=======================================*/
+p {
+	font-size: 16px !important; /* 字体大小16px */
+	font-weight: normal;
+	color: #333 !important; /* 字体颜色 */
+	line-height: 1.7em !important; /* 行距 1.7 */
+	letter-spacing: 0.08em !important; /* 字间距 0.1 */
+	margin: 6px !important; /* 页面边距 */
+	text-align: justify !important; /*两端对齐 */
+}
+
+/*======================================
+【列表】
+居中，18px, 粗体，字间距1px，行高 1.7 em
+字体颜色：蓝色
+=======================================*/
+/*======================================
+【编号列表】
+居中，18px, 粗体，字间距1px，行高 1.7 em
+字体颜色：蓝色
+=======================================*/
+/*======================================
+【引用文字】
+居中，16px, 粗体，字间距1px，行高 1.7 em
+字体颜色：灰色
+
+Markdown >
+=======================================*/
+blockquote {
+	font-size: 16px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(40, 136, 198);
+	/*color: rgb(76, 75, 75);*/
+	color: rgb(182, 180, 198);
+	padding: 15px;
+	text-align: justified;
+	letter-spacing: 0.07em !important; /* 字间距 0.1 */
+	margin: 50px 50px;
+	max-width: 100%;
+	line-height: 2em;
+	background-color: rgb(255, 255, 255);
+	box-shadow: rgb(225, 225, 225) 5px 5px 2px;
+	transform: rotate(-2deg);
+	box-sizing: border-box !important;
+	word-wrap: break-word !important;
+	padding: 15px;
+	text-align: justified;
+	letter-spacing: 0.07em !important;
+}
+/*======================================
+【表格】
+居中，18px, 粗体，字间距1px，行高 1.7 em
+字体颜色：蓝色
+=======================================*/
+/*======================================
+【分割线】
+居中，18px, 粗体，字间距1px，行高 1.7 em
+字体颜色：蓝色
+=======================================*/
