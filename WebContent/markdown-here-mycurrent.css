@@ -1,0 +1,348 @@
+@charset "UTF-8";
+/*
+ * NOTE:
+ * - The use of browser-specific styles (-moz-, -webkit-) should be avoided.
+ *   If used, they may not render correctly for people reading the email in
+ *   a different browser than the one from which the email was sent.
+ * - The use of state-dependent styles (like a:hover) don't work because they
+ *   don't match at the time the styles are made explicit. (In email, styles
+ *   must be explicitly applied to all elements -- stylesheets get stripped.)
+ */
+
+/* This is the overall wrapper, it should be treated as the `body` section. */
+.markdown-here-wrapper {
+}
+
+/* To add site specific rules, you can use the `data-md-url` attribute that we
+   add to the wrapper element. Note that rules like this are used depending
+   on the URL you're *sending* from, not the URL where the recipient views it.
+*/
+/* .markdown-here-wrapper[data-md-url*="mail.yahoo."] ul { color: red; } */
+
+
+/*
+code标签的定义: 
+	1. <code>标签， 
+	用于表示计算机源代码或者其他机器可以阅读的文本内容。
+	软件代码的编写 者习惯了编写代码时的代码格式，那么这个<code>标签
+	就是为软件代码编写者设计的， 
+	code标签内的文本将用等宽、类似电传打字机样式的字体（Courier）显示出来。
+	
+	2. pre标签的定义，
+	<pre>标签用来定义预格式化的文本，被包围在pre标签中的文本通常会保留空格
+	和换行符， 而文本也会呈现出等宽字体。
+	同样，pre标签的一个常见的应用便是用来保存计算机中的源代码文本。
+*/
+pre, code {
+  font-size: 0.85em;
+  font-family: Consolas, Inconsolata, Courier, monospace;
+}//二者通用的格式部分
+
+code {
+  margin: 0 0.15em;
+  padding: 0 0.3em;
+  white-space: pre-wrap;
+  border: 1px solid #EAEAEA;
+  background-color: #F8F8F8;
+  border-radius: 3px;
+  display: inline; /* added to fix Yahoo block display of inline code */
+}
+
+pre {
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+pre code {
+  white-space: pre;
+  overflow: auto; /* fixes issue #70: Firefox/Thunderbird: Code blocks with horizontal scroll would have bad background colour */
+  border-radius: 3px;
+  border: 1px solid #CCC;
+  padding: 0.5em 0.7em;
+  display: block !important; /* added to counteract the Yahoo-specific `code` rule; without this, code blocks in Blogger are broken */
+} //pre 内部的code
+
+/* In edit mode, Wordpress uses a `* { font: ...;} rule+style that makes highlighted
+code look non-monospace. This rule will override it. */
+.markdown-here-wrapper[data-md-url*="wordpress."] code span {
+  font: inherit;
+}
+
+/* Wordpress adds a grey background to `pre` elements that doesn't go well with
+our syntax highlighting. */
+.markdown-here-wrapper[data-md-url*="wordpress."] pre {
+  background-color: transparent;
+}
+
+/* This spacing has been tweaked to closely match Gmail+Chrome "paragraph" (two line breaks) spacing.
+Note that we only use a top margin and not a bottom margin -- this prevents the
+"blank line" look at the top of the email (issue #243).
+*/
+
+/* 正文部分 */
+p {
+  /* !important is needed here because Hotmail/Outlook.com uses !important to
+     kill the margin in <p>. We need this to win. */
+  margin: 0 0 1.2em 0 !important;
+}
+
+table, pre, dl, blockquote, q, ul, ol {
+  margin: 1.2em 0;
+}
+
+ul, ol {
+  padding-left: 2em;
+}
+
+li {
+  margin: 0.5em 0;
+}
+
+/* Space paragraphs in a list the same as the list itself. */
+li p {
+  /* Needs !important to override rule above. */
+  margin: 0.5em 0 !important;
+}
+
+/* Smaller spacing for sub-lists */
+ul ul, ul ol, ol ul, ol ol {
+  margin: 0;
+  padding-left: 1em;
+}
+
+/* Use Roman numerals for sub-ordered-lists. (Like Github.) */
+ol ol, ul ol {
+  list-style-type: lower-roman;
+}
+
+/* Use letters for sub-sub-ordered lists. (Like Github.) */
+ul ul ol, ul ol ol, ol ul ol, ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 1em;
+  font-weight: bold;
+  font-style: italic;
+}
+
+dl dd {
+  margin: 0 0 1em;
+  padding: 0 1em;
+}
+
+blockquote, q {
+  border-left: 4px solid #DDD;
+  padding: 0 1em;
+  color: #777;
+  quotes: none;
+}
+
+blockquote::before, blockquote::after, q::before, q::after {
+  content: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.3em 0 1em;
+  padding: 0;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 1.6em;
+  border-bottom: 1px solid #ddd;
+}
+
+h2 {
+  font-size: 1.4em;
+  border-bottom: 1px solid #eee;
+}
+
+h3 {
+  font-size: 1.3em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+table {
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+  font: inherit;
+  border: 0;
+}
+
+tbody {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+table tr {
+  border: 0;
+  border-top: 1px solid #CCC;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+table tr:nth-child(2n) {
+  background-color: #F8F8F8;
+}
+
+table tr th, table tr td {
+  font-size: 1em;
+  border: 1px solid #CCC;
+  margin: 0;
+  padding: 0.5em 1em;
+}
+
+table tr th {
+ font-weight: bold;
+  background-color: #F0F0F0;
+}
+
+
+/*+++++ 以上为原始的CSS文件内容 +++++++++++++ */
+/*===== 以下部分为北河沿微信公号修改部分 ====== */
+
+/* 正文字体 */
+.markdown-here-wrapper[data-md-url*="weixin."] p {
+
+    font-size: 16px !important; /* 字体大小16px */
+    color: #333 !important; /* 字体颜色 */ 
+    line-height: 1.7em !important; /* 行距 1.8 */
+    letter-spacing: 0.7em !important; /* 字间距 0.1 */
+    margin: 6px !important; /* 页面边距 */
+    text-align: justify !important; /*两端对齐 */
+}
+
+
+/* 最常用标题字体 ## 开头 */
+.markdown-here-wrapper[data-md-url*="weixin."] h2 {
+    font-size: 17px;
+    text-align:center; 
+    width:auto;
+    line-height: 1.8em;
+    color:#ffffff;
+    background-color:rgb(233, 104, 107);
+
+}
+
+/* 红底白字的标题 ### 开头 */
+.markdown-here-wrapper[data-md-url*="weixin."] h3 {
+    margin-top: 0 auto;
+    padding: 8px 18px;
+    border-width:initial;
+    border-style: none;
+    border-color: initial;
+    line-height: 21px;
+    display: inline-block;
+    outline: 0px;
+    vertical-align: middle;
+    overflow: hidden;
+    color: rgb(255, 255, 255);
+    background-color: rgb(233, 104, 107);
+    text-align: center;
+    transition: 0.2s ease-out;
+    box-shadow: rgba(0, 0, 0, 0.120) 0px 2px 6px, rgba(0, 0, 0, 0.24) 0px 2px 3px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+/* 其它格式，未使用 */
+.markdown-here-wrapper[data-md-url*="weixin."] h4 {
+    word-wrap: break-word !important;
+    word-break: normal;
+    line-height: 21px;
+    max-width: 100%;
+    color: rgb(255, 255, 255);
+    padding: 4px 10px;
+    background-color: rgb(192, 80, 77);
+    margin-right: 8px;
+    box-sizing: border-box !important;
+}
+
+/* 引用他人文字的格式，有倾斜角度  > 开头 */
+.markdown-here-wrapper[data-md-url*="weixin."] blockquote, blockquote p, blockquote li {
+    font-size: 16px;
+    max-width: 100%;
+    border-width: 0px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-color: rgb(241, 241, 241);
+    /*font-family: 微软雅黑;*/
+    color: rgb(162, 62, 62);
+    padding: 5px;
+    text-align: center;
+    margin: 50px 50px;
+    line-height: 24px;
+    background-color: rgb(217, 150, 148);
+    box-shadow: rgb(225, 225, 225) 5px 5px 2px;
+    transform: rotate(-3deg);
+    box-sizing: border-box !important;
+    word-wrap: break-word !important;
+}
+
+/* 小白边框的图片 #### ![](photo.png) */
+.markdown-here-wrapper[data-md-url*="weixin."] h5 image {
+    border-width: 1px; 
+    border-style: solid; 
+    border-color: rgb(170, 171, 152); 
+    display: block; 
+    padding: 3px; 
+    margin-right: auto; 
+    margin-left: auto; 
+    min-height: 24px; 
+    min-width: 24px; 
+    max-width: 500px; 
+    border-radius: 3px; 
+    box-shadow: rgb(190, 190, 159) 0px 0px 7px; 
+    background-position: 50% 50%; 
+    background-repeat: no-repeat; 
+    width: auto !important; 
+    height: auto !important; 
+    visibility: visible !important;
+}
+
+
+/*漂浮文字框 ##### 开头*/
+.markdown-here-wrapper[data-md-url*="weixin."] h5 {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(226, 226, 226);
+    box-shadow:  1px 2px 2px 0px rgb(226, 226, 226);
+
+    box-sizing: border-box;
+
+    display: inline-block;
+
+    font-size: 15px;
+    font-weight: normal;
+
+    line-height: 1.8em;
+    letter-spacing: 1px;
+    max-width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: justify;
+
+    word-wrap: break-word !important;
+} 
